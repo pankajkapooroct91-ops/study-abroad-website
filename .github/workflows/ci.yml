@@ -1,0 +1,25 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check-code:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: List Files
+      run: ls -la
+
+    - name: Check HTML files
+      run: |
+        echo "Checking HTML files..."
+        find . -name "*.html"
+
+    - name: Success Message
+      run: echo "Pipeline ran successfully!"
