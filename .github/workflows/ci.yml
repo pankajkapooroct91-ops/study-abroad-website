@@ -16,10 +16,19 @@ jobs:
     - name: List Files
       run: ls -la
 
-    - name: Check HTML files
+    - name: Check if index.html exists
       run: |
-        echo "Checking HTML files..."
-        find . -name "*.html"
+        if [ ! -f index.html ]; then
+          echo "index.html NOT found!"
+          exit 1
+        else
+          echo "index.html found ✅"
+        fi
+
+    - name: Check HTML files count
+      run: |
+        count=$(find . -name "*.html" | wc -l)
+        echo "HTML files count: $count"
 
     - name: Success Message
-      run: echo "Pipeline ran successfully!"
+      run: echo "All checks passed 🎉"
